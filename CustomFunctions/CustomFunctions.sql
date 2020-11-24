@@ -197,7 +197,7 @@ GO
 CREATE FUNCTION [custom].[SplitString]
 (
 	@string_in NVARCHAR(MAX), 
-	@delimiter NVARCHAR(255)
+	@delimiter NVARCHAR(255) = N','
 )
 RETURNS  TABLE 
 (
@@ -215,7 +215,7 @@ GO
 CREATE FUNCTION [custom].[SplitStringNoReplaceLeft]
 (
 	@string_in NVARCHAR(MAX), 
-	@delimiter NVARCHAR(255)
+	@delimiter NVARCHAR(255) = N','
 )
 RETURNS  TABLE 
 (
@@ -233,7 +233,7 @@ GO
 CREATE FUNCTION [custom].[SplitStringNoReplaceRight]
 (
 	@string_in NVARCHAR(MAX), 
-	@delimiter NVARCHAR(255)
+	@delimiter NVARCHAR(255) = N','
 )
 RETURNS  TABLE 
 (
