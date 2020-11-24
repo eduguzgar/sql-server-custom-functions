@@ -171,6 +171,40 @@ public class CustomFunctions
         return double.Parse(m.Value);
     }
 
+    [Microsoft.SqlServer.Server.SqlFunction]
+
+    public static SqlString GetNumberAfterString(SqlString str, SqlString patt)
+    {
+        if (str.IsNull || patt.IsNull)
+        {
+            return null;
+        }
+
+        string theString = str.ToString();
+        string pattern = patt.ToString();
+
+        if (!theString.Contains(pattern))
+        {
+            return null;
+        }
+
+        int index = theString.IndexOf(pattern, 0) + pattern.Length;
+        theString = theString.Substring(index);
+
+        if (theString[0] == ' ')
+        {
+            theString = theString.TrimStart();
+        }
+        Match m = Regex.Match(theString, @"^[-+]?\d+(\.\d+)?");
+
+        if (!m.Success)
+        {
+            return null;
+        }
+
+        return new SqlString(m.Value);
+    }
+
     #endregion
 
     #region Table Valued Functions

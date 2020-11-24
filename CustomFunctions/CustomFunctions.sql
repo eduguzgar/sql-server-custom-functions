@@ -52,6 +52,7 @@ DROP FUNCTION [custom].[GetIntAfterString]
 DROP FUNCTION [custom].[GetBigIntAfterString]
 DROP FUNCTION [custom].[GetRealAfterString]
 DROP FUNCTION [custom].[GetFloatAfterString]
+DROP FUNCTION [custom].[GetNumberAfterString]
 DROP ASSEMBLY CustomFunctions
 END
 GO
@@ -306,6 +307,22 @@ RETURNS REAL
 WITH EXECUTE AS CALLER
 AS 
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetRealAfterString]
+GO
+
+/* [custom].[GetRealAfterString] UserScalarDefinedFunction */
+
+IF OBJECT_ID('[custom].[GetNumberAfterString]') IS NOT NULL
+DROP FUNCTION [custom].[GetNumberAfterString]
+GO
+CREATE FUNCTION [custom].[GetNumberAfterString]
+(
+  @string_in NVARCHAR(MAX),
+  @pattern NVARCHAR(255)
+)
+RETURNS NVARCHAR(255)
+WITH EXECUTE AS CALLER
+AS 
+EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetNumberAfterString]
 GO
 
 /* [custom].[ConvertToDatetime] UserScalarDefinedFunction */
