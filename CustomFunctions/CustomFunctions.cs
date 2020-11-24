@@ -264,12 +264,14 @@ public class CustomFunctions
 
         return results;
     }
+
     public static void FillRow(object row, out int id, out SqlString value)
     {
         ValuePair pair = (ValuePair)row;
         id = pair.ID;
         value = pair.Value;
     }
+
     public class ValuePair
     {
         public ValuePair(int id, string value)
