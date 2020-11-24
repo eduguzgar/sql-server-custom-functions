@@ -53,7 +53,7 @@ public class CustomFunctions
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
 
-        Regex r = new Regex(@"^\s*[-+]?\d+");
+        Regex r = new Regex(@"\G\s*[-+]?\d+");
         Match m = r.Match(theString, index);
 
         if (!m.Success)
@@ -83,7 +83,7 @@ public class CustomFunctions
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
 
-        Regex r = new Regex(@"^\s*[-+]?\d+");
+        Regex r = new Regex(@"\G\s*[-+]?\d+");
         Match m = r.Match(theString, index);
 
         if (!m.Success)
@@ -113,7 +113,7 @@ public class CustomFunctions
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
 
-        Regex r = new Regex(@"^\s*[+-]?([0-9]*[.])?[0-9]+");
+        Regex r = new Regex(@"\G\s*[+-]?([0-9]*[.])?[0-9]+");
         Match m = r.Match(theString, index);
 
         if (!m.Success)
@@ -143,7 +143,7 @@ public class CustomFunctions
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
 
-        Regex r = new Regex(@"^\s*[+-]?([0-9]*[.])?[0-9]+");
+        Regex r = new Regex(@"\G\s*[+-]?([0-9]*[.])?[0-9]+");
         Match m = r.Match(theString, index);
 
         if (!m.Success)
@@ -173,7 +173,7 @@ public class CustomFunctions
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
 
-        Regex r = new Regex(@"^\s*[-+]?\d+(\.\d+)?");
+        Regex r = new Regex(@"\G\s*[-+]?\d+(\.\d+)?");
         Match m = r.Match(theString, index);
 
         if (!m.Success)
