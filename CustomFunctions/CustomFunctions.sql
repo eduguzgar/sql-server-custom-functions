@@ -69,8 +69,8 @@ GO
 CREATE FUNCTION [custom].[GetStringBetween]
 (
   @string_in		NVARCHAR(MAX),
-  @first_pattern	NVARCHAR(MAX),
-  @second_pattern	NVARCHAR(MAX)
+  @first_pattern	NVARCHAR(255),
+  @second_pattern	NVARCHAR(255)
 )
 RETURNS NVARCHAR(MAX)
 AS
@@ -114,7 +114,7 @@ GO
 CREATE FUNCTION [custom].[GetStringLeft]
 (
   @string_in	NVARCHAR(MAX),
-  @pattern		NVARCHAR(MAX)
+  @pattern		NVARCHAR(255)
 )
 RETURNS NVARCHAR(MAX)
 AS
@@ -149,7 +149,7 @@ GO
 CREATE FUNCTION [custom].[GetStringRight]
 (
   @string_in	NVARCHAR(MAX),
-  @pattern		NVARCHAR(MAX)
+  @pattern		NVARCHAR(255)
 )
 RETURNS NVARCHAR(MAX)
 AS
