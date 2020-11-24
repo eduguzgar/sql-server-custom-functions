@@ -311,7 +311,7 @@ GO
 /* [custom].[ConvertToDatetime] UserScalarDefinedFunction */
 
 -- DATETIME2 is the ISO standard for datetime formats, DATETIME isn't
--- Same Output of NovaExplorer DATETIME2(3), that means maximum precision in miliseconds, now Consulting Engineers will the same DateTime in NovaExplorer (I'm sure that Parser use DATETIME2)
+-- This means maximum precision in miliseconds
 
 IF OBJECT_ID('[custom].[ConvertToDatetime]') IS NOT NULL
 DROP FUNCTION [custom].[ConvertToDatetime]
