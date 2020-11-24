@@ -10,7 +10,7 @@ public class CustomFunctions
 
     [Microsoft.SqlServer.Server.SqlFunction]
 
-    public static string GetNumbersString(SqlString str)
+    public static SqlString GetNumbersString(SqlString str)
     {
         if (str.IsNull)
         {
@@ -31,7 +31,7 @@ public class CustomFunctions
             return null;
         }
 
-        return b;
+        return new SqlString(b);
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
