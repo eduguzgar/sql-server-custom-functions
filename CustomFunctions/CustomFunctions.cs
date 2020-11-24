@@ -52,13 +52,9 @@ public class CustomFunctions
         }
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
-        theString = theString.Substring(index);
 
-        if (theString[0] == ' ')
-        {
-            theString = theString.TrimStart();
-        }
-        Match m = Regex.Match(theString, @"^[-+]?\d+");
+        Regex r = new Regex(@"^\s*[-+]?\d+");
+        Match m = r.Match(theString, index);
 
         if (!m.Success)
         {
@@ -86,13 +82,9 @@ public class CustomFunctions
         }
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
-        theString = theString.Substring(index);
 
-        if (theString[0] == ' ')
-        {
-            theString = theString.TrimStart();
-        }
-        Match m = Regex.Match(theString, @"^[-+]?\d+");
+        Regex r = new Regex(@"^\s*[-+]?\d+");
+        Match m = r.Match(theString, index);
 
         if (!m.Success)
         {
@@ -120,13 +112,9 @@ public class CustomFunctions
         }
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
-        theString = theString.Substring(index);
 
-        if (theString[0] == ' ')
-        {
-            theString = theString.TrimStart();
-        }
-        Match m = Regex.Match(theString, @"^[+-]?([0-9]*[.])?[0-9]+");
+        Regex r = new Regex(@"^\s*[+-]?([0-9]*[.])?[0-9]+");
+        Match m = r.Match(theString, index);
 
         if (!m.Success)
         {
@@ -154,14 +142,9 @@ public class CustomFunctions
         }
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
-        theString = theString.Substring(index);
 
-        if (theString[0] == ' ')
-        {
-            theString = theString.TrimStart();
-        }
-
-        Match m = Regex.Match(theString, @"^[+-]?([0-9]*[.])?[0-9]+");
+        Regex r = new Regex(@"^\s*[+-]?([0-9]*[.])?[0-9]+");
+        Match m = r.Match(theString, index);
 
         if (!m.Success)
         {
@@ -189,13 +172,9 @@ public class CustomFunctions
         }
 
         int index = theString.IndexOf(pattern, 0) + pattern.Length;
-        theString = theString.Substring(index);
 
-        if (theString[0] == ' ')
-        {
-            theString = theString.TrimStart();
-        }
-        Match m = Regex.Match(theString, @"^[-+]?\d+(\.\d+)?");
+        Regex r = new Regex(@"^\s*[-+]?\d+(\.\d+)?");
+        Match m = r.Match(theString, index);
 
         if (!m.Success)
         {
