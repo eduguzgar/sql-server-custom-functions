@@ -1,14 +1,11 @@
 /********************************************************************************************************************************************
 
-												******************************************
-															CUSTOM FUNCTIONS
-												******************************************
-							
-	
-	Author:	Eduardo Guzman
+						******************************************
+					                     CUSTOM FUNCTIONS
+						******************************************
 
 	Description: Bunch of useful functions, scalar and table valued to make our life easier.
-				 Some of them are implemented as CLR.
+		     Some of them are implemented as CLR.
 				 
 	HOW TO: Just RUN this file once in each SQL Server Database to save all functions.
 
