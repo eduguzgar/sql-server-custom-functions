@@ -16,7 +16,7 @@
 				
 *********************************************************************************************************************************************/
 
-USE [test]
+USE [AdventurerWorks]
 GO
 
 SET ANSI_NULLS ON
@@ -25,11 +25,6 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
--- Create custom schema if not exists
-
-IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'custom')
-EXEC ('CREATE SCHEMA [custom]')
-GO
 -- Import the Assembly CustomFunctions.dll
 
 sp_configure 'show advanced options', 1
@@ -44,15 +39,15 @@ GO
 
 IF EXISTS(SELECT 1 FROM sys.assemblies WHERE name = 'CustomFunctions')
 BEGIN
-DROP FUNCTION [custom].[GetNumbersString]
-DROP FUNCTION [custom].[SplitString]
-DROP FUNCTION [custom].[SplitStringNoReplaceLeft]
-DROP FUNCTION [custom].[SplitStringNoReplaceRight]
-DROP FUNCTION [custom].[GetIntAfterString]
-DROP FUNCTION [custom].[GetBigIntAfterString]
-DROP FUNCTION [custom].[GetRealAfterString]
-DROP FUNCTION [custom].[GetFloatAfterString]
-DROP FUNCTION [custom].[GetNumberAfterString]
+DROP FUNCTION [GetNumbersString]
+DROP FUNCTION [SplitString]
+DROP FUNCTION [SplitStringNoReplaceLeft]
+DROP FUNCTION [SplitStringNoReplaceRight]
+DROP FUNCTION [GetIntAfterString]
+DROP FUNCTION [GetBigIntAfterString]
+DROP FUNCTION [GetRealAfterString]
+DROP FUNCTION [GetFloatAfterString]
+DROP FUNCTION [GetNumberAfterString]
 DROP ASSEMBLY CustomFunctions
 END
 GO
@@ -61,12 +56,12 @@ FROM 'C:\custom\CustomFunctions\CustomFunctions.dll'
 WITH PERMISSION_SET = SAFE
 GO
 
-/* [custom].[GetStringBetween] UserScalarDefinedFunction */
+/* [GetStringBetween] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetStringBetween]') IS NOT NULL
-DROP FUNCTION [custom].[GetStringBetween]
+IF OBJECT_ID('[GetStringBetween]') IS NOT NULL
+DROP FUNCTION [GetStringBetween]
 GO
-CREATE FUNCTION [custom].[GetStringBetween]
+CREATE FUNCTION [GetStringBetween]
 (
   @string_in		NVARCHAR(MAX),
   @first_pattern	NVARCHAR(255),
@@ -106,12 +101,12 @@ BEGIN
 END
 GO
 
-/* [custom].[GetStringLeft] UserScalarDefinedFunction */
+/* [GetStringLeft] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetStringLeft]') IS NOT NULL
-DROP FUNCTION [custom].[GetStringLeft]
+IF OBJECT_ID('[GetStringLeft]') IS NOT NULL
+DROP FUNCTION [GetStringLeft]
 GO
-CREATE FUNCTION [custom].[GetStringLeft]
+CREATE FUNCTION [GetStringLeft]
 (
   @string_in	NVARCHAR(MAX),
   @pattern		NVARCHAR(255)
@@ -141,12 +136,12 @@ BEGIN
 END
 GO
 
-/* [custom].[GetStringRight] UserScalarDefinedFunction */
+/* [GetStringRight] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetStringRight]') IS NOT NULL
-DROP FUNCTION [custom].[GetStringRight]
+IF OBJECT_ID('[GetStringRight]') IS NOT NULL
+DROP FUNCTION [GetStringRight]
 GO
-CREATE FUNCTION [custom].[GetStringRight]
+CREATE FUNCTION [GetStringRight]
 (
   @string_in	NVARCHAR(MAX),
   @pattern		NVARCHAR(255)
@@ -176,12 +171,12 @@ BEGIN
 END
 GO
 
-/* [custom].[GetNumberString] UserScalarDefinedFunction */
+/* [GetNumberString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetNumbersString]') IS NOT NULL
-DROP FUNCTION [custom].[GetNumberString]
+IF OBJECT_ID('[GetNumbersString]') IS NOT NULL
+DROP FUNCTION [GetNumberString]
 GO
-CREATE FUNCTION [custom].[GetNumbersString]
+CREATE FUNCTION [GetNumbersString]
 (
   @string NVARCHAR(MAX)
 )
@@ -191,10 +186,10 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetNumbersString]
 GO
 
-IF OBJECT_ID('[custom].[SplitString]') IS NOT NULL
-DROP FUNCTION [custom].[SplitString]
+IF OBJECT_ID('[SplitString]') IS NOT NULL
+DROP FUNCTION [SplitString]
 GO
-CREATE FUNCTION [custom].[SplitString]
+CREATE FUNCTION [SplitString]
 (
 	@string_in NVARCHAR(MAX), 
 	@delimiter NVARCHAR(255) = N','
@@ -209,10 +204,10 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[SplitString]
 GO
 
-IF OBJECT_ID('[custom].[SplitStringNoReplaceLeft]') IS NOT NULL
-DROP FUNCTION [custom].[SplitStringNoReplaceLeft]
+IF OBJECT_ID('[SplitStringNoReplaceLeft]') IS NOT NULL
+DROP FUNCTION [SplitStringNoReplaceLeft]
 GO
-CREATE FUNCTION [custom].[SplitStringNoReplaceLeft]
+CREATE FUNCTION [SplitStringNoReplaceLeft]
 (
 	@string_in NVARCHAR(MAX), 
 	@delimiter NVARCHAR(255) = N','
@@ -227,10 +222,10 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[SplitStringNoReplaceLeft]
 GO
 
-IF OBJECT_ID('[custom].[SplitStringNoReplaceRight]') IS NOT NULL
-DROP FUNCTION [custom].[SplitStringNoReplaceRight]
+IF OBJECT_ID('[SplitStringNoReplaceRight]') IS NOT NULL
+DROP FUNCTION [SplitStringNoReplaceRight]
 GO
-CREATE FUNCTION [custom].[SplitStringNoReplaceRight]
+CREATE FUNCTION [SplitStringNoReplaceRight]
 (
 	@string_in NVARCHAR(MAX), 
 	@delimiter NVARCHAR(255) = N','
@@ -245,12 +240,12 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[SplitStringNoReplaceRight]
 GO
 
-/* [custom].[GetIntAfterString] UserScalarDefinedFunction */
+/* [GetIntAfterString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetIntAfterString]') IS NOT NULL
-DROP FUNCTION [custom].[GetIntAfterString]
+IF OBJECT_ID('[GetIntAfterString]') IS NOT NULL
+DROP FUNCTION [GetIntAfterString]
 GO
-CREATE FUNCTION [custom].[GetIntAfterString]
+CREATE FUNCTION [GetIntAfterString]
 (
   @string_in NVARCHAR(MAX),
   @pattern NVARCHAR(255)
@@ -261,12 +256,12 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetIntAfterString]
 GO
 
-/* [custom].[GetBigIntAfterString] UserScalarDefinedFunction */
+/* [GetBigIntAfterString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetBigIntAfterString]') IS NOT NULL
-DROP FUNCTION [custom].[GetBigIntAfterString]
+IF OBJECT_ID('[GetBigIntAfterString]') IS NOT NULL
+DROP FUNCTION [GetBigIntAfterString]
 GO
-CREATE FUNCTION [custom].[GetBigIntAfterString]
+CREATE FUNCTION [GetBigIntAfterString]
 (
   @string_in NVARCHAR(MAX),
   @pattern NVARCHAR(255)
@@ -277,12 +272,12 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetBigIntAfterString]
 GO
 
-/* [custom].[GetFloatAfterString] UserScalarDefinedFunction */
+/* [GetFloatAfterString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetFloatAfterString]') IS NOT NULL
-DROP FUNCTION [custom].[GetFloatAfterString]
+IF OBJECT_ID('[GetFloatAfterString]') IS NOT NULL
+DROP FUNCTION [GetFloatAfterString]
 GO
-CREATE FUNCTION [custom].[GetFloatAfterString]
+CREATE FUNCTION [GetFloatAfterString]
 (
   @string_in NVARCHAR(MAX),
   @pattern NVARCHAR(255)
@@ -293,12 +288,12 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetFloatAfterString]
 GO
 
-/* [custom].[GetRealAfterString] UserScalarDefinedFunction */
+/* [GetRealAfterString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetRealAfterString]') IS NOT NULL
-DROP FUNCTION [custom].[GetRealAfterString]
+IF OBJECT_ID('[GetRealAfterString]') IS NOT NULL
+DROP FUNCTION [GetRealAfterString]
 GO
-CREATE FUNCTION [custom].[GetRealAfterString]
+CREATE FUNCTION [GetRealAfterString]
 (
   @string_in NVARCHAR(MAX),
   @pattern NVARCHAR(255)
@@ -309,12 +304,12 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetRealAfterString]
 GO
 
-/* [custom].[GetRealAfterString] UserScalarDefinedFunction */
+/* [GetRealAfterString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[GetNumberAfterString]') IS NOT NULL
-DROP FUNCTION [custom].[GetNumberAfterString]
+IF OBJECT_ID('[GetNumberAfterString]') IS NOT NULL
+DROP FUNCTION [GetNumberAfterString]
 GO
-CREATE FUNCTION [custom].[GetNumberAfterString]
+CREATE FUNCTION [GetNumberAfterString]
 (
   @string_in NVARCHAR(MAX),
   @pattern NVARCHAR(255)
@@ -325,15 +320,15 @@ AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetNumberAfterString]
 GO
 
-/* [custom].[ConvertToDatetime] UserScalarDefinedFunction */
+/* [ConvertToDatetime] UserScalarDefinedFunction */
 
 -- DATETIME2 is the ISO standard for datetime formats, DATETIME isn't
 -- This means maximum precision in miliseconds
 
-IF OBJECT_ID('[custom].[ConvertToDatetime]') IS NOT NULL
-DROP FUNCTION [custom].[ConvertToDatetime]
+IF OBJECT_ID('[ConvertToDatetime]') IS NOT NULL
+DROP FUNCTION [ConvertToDatetime]
 GO
-CREATE FUNCTION [custom].[ConvertToDatetime]
+CREATE FUNCTION [ConvertToDatetime]
 (
   @UTC_TimeSeconds INT,
   @UTC_TimeNanoSeconds INT = 0,
@@ -353,12 +348,12 @@ BEGIN
 END
 GO
 
-/* [custom].[CountLinesString] UserScalarDefinedFunction */
+/* [CountLinesString] UserScalarDefinedFunction */
 
-IF OBJECT_ID('[custom].[CountLinesString]') IS NOT NULL
-DROP FUNCTION [custom].[CountLinesString]
+IF OBJECT_ID('[CountLinesString]') IS NOT NULL
+DROP FUNCTION [CountLinesString]
 GO
-CREATE FUNCTION [custom].[CountLinesString] 
+CREATE FUNCTION [CountLinesString] 
 (
 	@string NVARCHAR(MAX)
 )
