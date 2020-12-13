@@ -70,7 +70,6 @@ CREATE FUNCTION [GetStringBetween]
 RETURNS NVARCHAR(MAX)
 AS
 BEGIN
-
 	DECLARE @string_out NVARCHAR(MAX)
 	DECLARE @first_index INT
 	DECLARE @second_index INT
@@ -114,7 +113,6 @@ CREATE FUNCTION [GetStringLeft]
 RETURNS NVARCHAR(MAX)
 AS
 BEGIN
-
 	DECLARE @string_out NVARCHAR(MAX)
 	DECLARE @index INT
 	DECLARE @pattern_len INT
@@ -149,7 +147,6 @@ CREATE FUNCTION [GetStringRight]
 RETURNS NVARCHAR(MAX)
 AS
 BEGIN
-
 	DECLARE @string_out NVARCHAR(MAX)
 	DECLARE @index INT
 	DECLARE @pattern_len INT
