@@ -1,19 +1,19 @@
 /********************************************************************************************************************************************
 
-						******************************************
-					                     CUSTOM FUNCTIONS
-						******************************************
+                        ******************************************
+                                         CUSTOM FUNCTIONS
+                        ******************************************
 
-	Description: Bunch of useful functions, scalar and table valued to make our life easier.
-		     Some of them are implemented as CLR.
-				 
-	HOW TO: Just RUN this file once in each SQL Server Database to save all functions.
+    Description: Bunch of useful functions, scalar and table valued to make our life easier.
+             Some of them are implemented as CLR.
+                 
+    HOW TO: Just RUN this file once in each SQL Server Database to save all functions.
 
-	TODO: 
-		- Add new functions like GetIntBeforeString, GetFloatBeforeString, GetTinyIntAfterString, GetSmallIntAfterString ... etc
-		- Still improving the CLR functions
+    TODO: 
+        - Add new functions like GetIntBeforeString, GetFloatBeforeString, GetTinyIntAfterString, GetSmallIntAfterString ... etc
+        - Still improving the CLR functions
 
-				
+                
 *********************************************************************************************************************************************/
 
 USE [AdventurerWorks]
@@ -70,33 +70,33 @@ CREATE FUNCTION [GetStringBetween]
 RETURNS NVARCHAR(MAX)
 AS
 BEGIN
-	DECLARE @string_out NVARCHAR(MAX)
-	DECLARE @first_index INT
-	DECLARE @second_index INT
-	DECLARE @first_pattern_len INT
+    DECLARE @string_out NVARCHAR(MAX)
+    DECLARE @first_index INT
+    DECLARE @second_index INT
+    DECLARE @first_pattern_len INT
 
-	IF @string_in IS NULL
-	RETURN NULL
+    IF @string_in IS NULL
+    RETURN NULL
 
-	IF @first_pattern IS NULL
-	RETURN NULL
+    IF @first_pattern IS NULL
+    RETURN NULL
 
-	IF @second_pattern IS NULL
-	RETURN NULL
+    IF @second_pattern IS NULL
+    RETURN NULL
 
-	SET @first_index = CHARINDEX(@first_pattern, @string_in)
+    SET @first_index = CHARINDEX(@first_pattern, @string_in)
 
-	IF @first_index = 0
-	RETURN NULL
+    IF @first_index = 0
+    RETURN NULL
 
-	SET @second_index = CHARINDEX(@second_pattern, @string_in)
-	
-	IF @second_index = 0
-	RETURN NULL
-	
-	SET @string_out = SUBSTRING(@string_in, @first_index + LEN(@first_pattern), @second_index - @first_index)
+    SET @second_index = CHARINDEX(@second_pattern, @string_in)
+    
+    IF @second_index = 0
+    RETURN NULL
+    
+    SET @string_out = SUBSTRING(@string_in, @first_index + LEN(@first_pattern), @second_index - @first_index)
 
-	RETURN LTRIM(RTRIM(@string_out))
+    RETURN LTRIM(RTRIM(@string_out))
 END
 GO
 
@@ -113,24 +113,24 @@ CREATE FUNCTION [GetStringLeft]
 RETURNS NVARCHAR(MAX)
 AS
 BEGIN
-	DECLARE @string_out NVARCHAR(MAX)
-	DECLARE @index INT
-	DECLARE @pattern_len INT
+    DECLARE @string_out NVARCHAR(MAX)
+    DECLARE @index INT
+    DECLARE @pattern_len INT
 
-	IF @string_in IS NULL
-	RETURN NULL
+    IF @string_in IS NULL
+    RETURN NULL
 
-	IF @pattern IS NULL
-	RETURN NULL
+    IF @pattern IS NULL
+    RETURN NULL
 
-	SET @index = CHARINDEX(@pattern, @string_in)
-	
-	IF @index = 0
-	RETURN NULL
+    SET @index = CHARINDEX(@pattern, @string_in)
+    
+    IF @index = 0
+    RETURN NULL
 
-	SET @string_out = LEFT(@string_in, @index - 1)
+    SET @string_out = LEFT(@string_in, @index - 1)
 
-	RETURN LTRIM(RTRIM(@string_out))
+    RETURN LTRIM(RTRIM(@string_out))
 END
 GO
 
@@ -147,24 +147,24 @@ CREATE FUNCTION [GetStringRight]
 RETURNS NVARCHAR(MAX)
 AS
 BEGIN
-	DECLARE @string_out NVARCHAR(MAX)
-	DECLARE @index INT
-	DECLARE @pattern_len INT
+    DECLARE @string_out NVARCHAR(MAX)
+    DECLARE @index INT
+    DECLARE @pattern_len INT
 
-	IF @string_in IS NULL
-	RETURN NULL
+    IF @string_in IS NULL
+    RETURN NULL
 
-	IF @pattern IS NULL
-	RETURN NULL
+    IF @pattern IS NULL
+    RETURN NULL
 
-	SET @index = CHARINDEX(@pattern, @string_in)
+    SET @index = CHARINDEX(@pattern, @string_in)
 
-	IF @index = 0
-	RETURN NULL
+    IF @index = 0
+    RETURN NULL
 
-	SET @string_out = RIGHT(RTRIM(@string_in), LEN(@string_in) - @index - LEN(@pattern) + 1)
+    SET @string_out = RIGHT(RTRIM(@string_in), LEN(@string_in) - @index - LEN(@pattern) + 1)
 
-	RETURN LTRIM(RTRIM(@string_out))
+    RETURN LTRIM(RTRIM(@string_out))
 END
 GO
 
@@ -188,13 +188,13 @@ DROP FUNCTION [SplitString]
 GO
 CREATE FUNCTION [SplitString]
 (
-	@string_in NVARCHAR(MAX), 
-	@delimiter NVARCHAR(255) = N','
+    @string_in NVARCHAR(MAX), 
+    @delimiter NVARCHAR(255) = N','
 )
 RETURNS  TABLE 
 (
-	nRow	INT,
-	string	NVARCHAR(4000)
+    nRow	INT,
+    string	NVARCHAR(4000)
 )
 WITH EXECUTE AS CALLER
 AS 
@@ -206,13 +206,13 @@ DROP FUNCTION [SplitStringNoReplaceLeft]
 GO
 CREATE FUNCTION [SplitStringNoReplaceLeft]
 (
-	@string_in NVARCHAR(MAX), 
-	@delimiter NVARCHAR(255) = N','
+    @string_in NVARCHAR(MAX), 
+    @delimiter NVARCHAR(255) = N','
 )
 RETURNS  TABLE 
 (
-	nRow	INT,
-	string	NVARCHAR(4000)
+    nRow	INT,
+    string	NVARCHAR(4000)
 )
 WITH EXECUTE AS CALLER
 AS 
@@ -224,13 +224,13 @@ DROP FUNCTION [SplitStringNoReplaceRight]
 GO
 CREATE FUNCTION [SplitStringNoReplaceRight]
 (
-	@string_in NVARCHAR(MAX), 
-	@delimiter NVARCHAR(255) = N','
+    @string_in NVARCHAR(MAX), 
+    @delimiter NVARCHAR(255) = N','
 )
 RETURNS  TABLE 
 (
-	nRow	INT,
-	string	NVARCHAR(4000)
+    nRow	INT,
+    string	NVARCHAR(4000)
 )
 WITH EXECUTE AS CALLER
 AS 
@@ -335,13 +335,13 @@ CREATE FUNCTION [ConvertToDatetime]
 RETURNS DATETIME2(3)
 AS
 BEGIN
-	DECLARE @StartDateTime DATETIME2(3)
-	DECLARE @DateTime DATETIME2(3)
+    DECLARE @StartDateTime DATETIME2(3)
+    DECLARE @DateTime DATETIME2(3)
 
-	SET @StartDateTime = '1970-1-1 00:00:00.000'
-	SET @DateTime = DATEADD(MILLISECOND, @UTC_TimeNanoSeconds/1000000, DATEADD(SECOND, @UTC_TimeSeconds + @TimeZoneCorrection + @DaylightSavingTimeCorrection, @StartDateTime))
+    SET @StartDateTime = '1970-1-1 00:00:00.000'
+    SET @DateTime = DATEADD(MILLISECOND, @UTC_TimeNanoSeconds/1000000, DATEADD(SECOND, @UTC_TimeSeconds + @TimeZoneCorrection + @DaylightSavingTimeCorrection, @StartDateTime))
 
-	RETURN @DateTime
+    RETURN @DateTime
 END
 GO
 
@@ -352,15 +352,15 @@ DROP FUNCTION [CountLinesString]
 GO
 CREATE FUNCTION [CountLinesString] 
 (
-	@string NVARCHAR(MAX)
+    @string NVARCHAR(MAX)
 )
 RETURNS BIGINT
 AS 
 BEGIN
-	DECLARE @count BIGINT
+    DECLARE @count BIGINT
 
-	-- CHAR(10) = '\n'
-	SET @count = LEN(@string) - LEN(REPLACE(@string, CHAR(10), '')) + 1
+    -- CHAR(10) = '\n'
+    SET @count = LEN(@string) - LEN(REPLACE(@string, CHAR(10), '')) + 1
 
     RETURN @count
 END
