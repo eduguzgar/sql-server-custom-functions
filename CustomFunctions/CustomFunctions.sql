@@ -362,6 +362,6 @@ BEGIN
 	-- CHAR(10) = '\n'
 	SET @count = LEN(@string) - LEN(REPLACE(@string, CHAR(10), '')) + 1
 
-    RETURN @count;
+    RETURN @count
 END
 GO
