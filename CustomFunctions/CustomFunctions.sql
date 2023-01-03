@@ -6,14 +6,14 @@
 
     Description: Bunch of useful functions, scalar and table valued to make our life easier.
              Some of them are implemented as CLR.
-                 
+
     HOW TO: Just RUN this file once in each SQL Server Database to save all functions.
 
-    TODO: 
+    TODO:
         - Add new functions like GetIntBeforeString, GetFloatBeforeString, GetTinyIntAfterString, GetSmallIntAfterString ... etc
         - Still improving the CLR functions
 
-                
+
 *********************************************************************************************************************************************/
 
 USE [AdventurerWorks]
@@ -90,10 +90,10 @@ BEGIN
     RETURN NULL
 
     SET @second_index = CHARINDEX(@second_pattern, @string_in)
-    
+
     IF @second_index = 0
     RETURN NULL
-    
+
     SET @string_out = SUBSTRING(@string_in, @first_index + LEN(@first_pattern), @second_index - @first_index)
 
     RETURN LTRIM(RTRIM(@string_out))
@@ -124,7 +124,7 @@ BEGIN
     RETURN NULL
 
     SET @index = CHARINDEX(@pattern, @string_in)
-    
+
     IF @index = 0
     RETURN NULL
 
@@ -179,7 +179,7 @@ CREATE FUNCTION [GetNumbersString]
 )
 RETURNS NVARCHAR(256)
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetNumbersString]
 GO
 
@@ -188,16 +188,16 @@ DROP FUNCTION [SplitString]
 GO
 CREATE FUNCTION [SplitString]
 (
-    @string_in NVARCHAR(MAX), 
+    @string_in NVARCHAR(MAX),
     @delimiter NVARCHAR(255) = N','
 )
-RETURNS  TABLE 
+RETURNS  TABLE
 (
     nRow	INT,
     string	NVARCHAR(4000)
 )
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[SplitString]
 GO
 
@@ -206,16 +206,16 @@ DROP FUNCTION [SplitStringNoReplaceLeft]
 GO
 CREATE FUNCTION [SplitStringNoReplaceLeft]
 (
-    @string_in NVARCHAR(MAX), 
+    @string_in NVARCHAR(MAX),
     @delimiter NVARCHAR(255) = N','
 )
-RETURNS  TABLE 
+RETURNS  TABLE
 (
     nRow	INT,
     string	NVARCHAR(4000)
 )
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[SplitStringNoReplaceLeft]
 GO
 
@@ -224,16 +224,16 @@ DROP FUNCTION [SplitStringNoReplaceRight]
 GO
 CREATE FUNCTION [SplitStringNoReplaceRight]
 (
-    @string_in NVARCHAR(MAX), 
+    @string_in NVARCHAR(MAX),
     @delimiter NVARCHAR(255) = N','
 )
-RETURNS  TABLE 
+RETURNS  TABLE
 (
     nRow	INT,
     string	NVARCHAR(4000)
 )
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[SplitStringNoReplaceRight]
 GO
 
@@ -249,7 +249,7 @@ CREATE FUNCTION [GetIntAfterString]
 )
 RETURNS INT
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetIntAfterString]
 GO
 
@@ -265,7 +265,7 @@ CREATE FUNCTION [GetBigIntAfterString]
 )
 RETURNS BIGINT
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetBigIntAfterString]
 GO
 
@@ -281,7 +281,7 @@ CREATE FUNCTION [GetFloatAfterString]
 )
 RETURNS FLOAT
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetFloatAfterString]
 GO
 
@@ -297,7 +297,7 @@ CREATE FUNCTION [GetRealAfterString]
 )
 RETURNS REAL
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetRealAfterString]
 GO
 
@@ -313,7 +313,7 @@ CREATE FUNCTION [GetNumberAfterString]
 )
 RETURNS NVARCHAR(255)
 WITH EXECUTE AS CALLER
-AS 
+AS
 EXTERNAL NAME [CustomFunctions].[CustomFunctions].[GetNumberAfterString]
 GO
 
@@ -350,12 +350,12 @@ GO
 IF OBJECT_ID('[CountLinesString]') IS NOT NULL
 DROP FUNCTION [CountLinesString]
 GO
-CREATE FUNCTION [CountLinesString] 
+CREATE FUNCTION [CountLinesString]
 (
     @string NVARCHAR(MAX)
 )
 RETURNS BIGINT
-AS 
+AS
 BEGIN
     DECLARE @count BIGINT
 

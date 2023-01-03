@@ -9,7 +9,6 @@ public class CustomFunctions
     #region User Defined Functions
 
     [Microsoft.SqlServer.Server.SqlFunction]
-
     public static SqlString GetNumbersString(SqlString str)
     {
         if (str.IsNull)
@@ -35,7 +34,6 @@ public class CustomFunctions
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
-
     public static int? GetIntAfterString(SqlString str, SqlString patt)
     {
         if (str.IsNull || patt.IsNull)
@@ -65,7 +63,6 @@ public class CustomFunctions
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
-
     public static long? GetBigIntAfterString(SqlString str, SqlString patt)
     {
         if (str.IsNull || patt.IsNull)
@@ -95,7 +92,6 @@ public class CustomFunctions
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
-
     public static float? GetRealAfterString(SqlString str, SqlString patt)
     {
         if (str.IsNull || patt.IsNull)
@@ -125,7 +121,6 @@ public class CustomFunctions
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
-
     public static double? GetFloatAfterString(SqlString str, SqlString patt)
     {
         if (str.IsNull || patt.IsNull)
@@ -155,7 +150,6 @@ public class CustomFunctions
     }
 
     [Microsoft.SqlServer.Server.SqlFunction]
-
     public static SqlString GetNumberAfterString(SqlString str, SqlString patt)
     {
         if (str.IsNull || patt.IsNull)
@@ -188,9 +182,7 @@ public class CustomFunctions
 
     #region Table Valued Functions
 
-    [SqlFunction(FillRowMethodName = "FillRow",
-        TableDefinition = "id int, value nvarchar(4000)")]
-
+    [SqlFunction(FillRowMethodName = "FillRow", TableDefinition = "id int, value nvarchar(4000)")]
     public static IEnumerable SplitString(
         [SqlFacet(MaxSize = -1)]
         SqlString str,
@@ -213,9 +205,7 @@ public class CustomFunctions
         return results;
     }
 
-    [SqlFunction(FillRowMethodName = "FillRow",
-    TableDefinition = "id int, value nvarchar(4000)")]
-
+    [SqlFunction(FillRowMethodName = "FillRow", TableDefinition = "id int, value nvarchar(4000)")]
     public static IEnumerable SplitStringNoReplaceLeft(
     [SqlFacet(MaxSize = -1)]
         SqlString str,
@@ -239,9 +229,7 @@ public class CustomFunctions
         return results;
     }
 
-    [SqlFunction(FillRowMethodName = "FillRow",
-    TableDefinition = "id int, value nvarchar(4000)")]
-
+    [SqlFunction(FillRowMethodName = "FillRow", TableDefinition = "id int, value nvarchar(4000)")]
     public static IEnumerable SplitStringNoReplaceRight(
     [SqlFacet(MaxSize = -1)]
         SqlString str,
